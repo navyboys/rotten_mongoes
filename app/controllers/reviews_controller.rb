@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
+  before_filter :load_movie
+
   def new
-    @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.build
   end
 
   def create
-    @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.build(review_params)
     @review.user_id = current_user.id
 
@@ -20,5 +20,9 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:text, :rating_out_of_ten)
+  end
+
+  def load_movie
+    @movie = Movie.find(params[:movie_id])
   end
 end
