@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   def full_name
     "#{firstname} #{lastname}"
   end
+
+  def admin?
+    admin
+  end
 end

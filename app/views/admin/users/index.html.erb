@@ -1,0 +1,8 @@
+<h1>Rotten Mangoes</h1>
+<hr>
+<% @users.each do |user| %>
+  <p>Full Name: <%= link_to user.full_name, admin_user_path(user) %></p>
+  <p>Email: <%= user.email %></p>
+  <p>Register Time: <%= user.created_at %></p>
+  <hr>
+<% end %>
