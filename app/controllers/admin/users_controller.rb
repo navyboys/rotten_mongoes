@@ -36,6 +36,7 @@ class Admin::UsersController < AdminsController
 
   def destroy
     @user.destroy
+    UserMailer.delete_notification_email(@user).deliver_now
     redirect_to admin_users_path, notice: "User deleted."
   end
 
