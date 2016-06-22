@@ -1,8 +1,19 @@
 <h1>Rotten Mangoes</h1>
 <hr>
-<% @users.each do |user| %>
-  <p>Full Name: <%= link_to user.full_name, admin_user_path(user) %></p>
-  <p>Email: <%= user.email %></p>
-  <p>Register Time: <%= user.created_at %></p>
-  <hr>
-<% end %>
+<table>
+  <tr>
+    <th>Full Name</th>
+    <th>Email</th>
+    <th>Register Time</th>
+    <th>Admin</th>
+  </tr>
+  <%= paginate @users %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to user.full_name, admin_user_path(user) %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at %></td>
+      <td><%= "Admin" if user.admin? %></td>
+    </tr>
+  <% end %>
+</table>
