@@ -1,4 +1,4 @@
-<%= form_for @user, url: url do |f| %>
+<%= form_for @user, url: url, method: method do |f| %>
   <% if @user.errors.any? %>
     <div>
       <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
@@ -29,5 +29,11 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div>
+  <% if params[:controller] == 'admin/users' %>
+    <div>
+      <%= f.label :admin %>
+      <%= f.check_box :admin %>
+    </div>
+  <% end %>
   <div><%= f.submit "Submit" %></div>
 <% end %>

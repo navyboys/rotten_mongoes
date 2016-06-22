@@ -26,6 +26,7 @@ class Admin::UsersController < AdminsController
   end
 
   def update
+    binding.pry
     if @user.update_attributes(user_params)
       redirect_to admin_user_path(@user), notice: "User updated."
     else
@@ -41,7 +42,7 @@ class Admin::UsersController < AdminsController
   protected
 
   def user_params
-    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation)
+    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation, :admin)
   end
 
   def load_user
