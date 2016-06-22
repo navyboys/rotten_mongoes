@@ -1,4 +1,7 @@
 class Movie < ActiveRecord::Base
+  scope :title_filter, ->(word) { where("UPPER(title) LIKE ?", "%#{word}%".upcase) }
+  scope :director_filter, ->(word) { where("UPPER(director) LIKE ?", "%#{word}%".upcase) }
+  
   has_many :reviews
 
   mount_uploader :image, ImageUploader
