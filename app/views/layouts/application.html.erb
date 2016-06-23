@@ -7,9 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= render 'layouts/navigation' %>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value) %>
   <% end %>
+
   <%= yield %>
   <%= render 'layouts/footer' %>
 </body>

@@ -1,39 +1,28 @@
-<%= form_for @user, url: url, method: method do |f| %>
-  <% if @user.errors.any? %>
-    <div>
-      <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-4 col-sm-offset-1">
+    <%= bootstrap_form_for @user, url: url, method: method, html: { class: "form-horizontal" } do |f| %>
+      <% if @user.errors.any? %>
+        <div>
+          <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <fieldset>
+        <%= f.email_field :email %>
+        <%= f.text_field :firstname %>
+        <%= f.text_field :lastname %>
+        <%= f.password_field :password %>
+        <%= f.password_field :password_confirmation %>
+        <% if params[:controller] == 'admin/users' %>
+          <%= f.check_box :admin %>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+        <%= f.submit %>
+      </fieldset>
+    <% end %>
   </div>
-  <div>
-    <%= f.label :firstname, "First Name" %><br>
-    <%= f.text_field :firstname %>
-  </div>
-  <div>
-    <%= f.label :lastname, "Last Name" %><br>
-    <%= f.text_field :lastname %>
-  </div>
-  <div>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <% if params[:controller] == 'admin/users' %>
-    <div>
-      <%= f.label :admin %>
-      <%= f.check_box :admin %>
-    </div>
-  <% end %>
-  <div><%= f.submit "Submit" %></div>
-<% end %>
+</div>
