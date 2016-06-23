@@ -2,8 +2,9 @@
 <%= link_to "Submit a movie!", new_movie_path %>
 <hr>
 <%= form_tag movies_path, method: 'GET', style: 'display: inline' do %>
-  <%= text_field_tag :title, nil, placeholder: "Title" %>
-  <%= text_field_tag :director, nil, placeholder: "Director" %>
+  <!-- <%= text_field_tag :title, nil, placeholder: "Title" %>
+  <%= text_field_tag :director, nil, placeholder: "Director" %> -->
+  <%= text_field_tag :key_word, nil, placeholder: "Key word in Title or Director" %>
   <%= select_tag :duration, options_for_select(['Under 90 minutes', 'Between 90 and 120 minutes', 'Over 120 minutes'], selected: :duration ) %>
   <%= submit_tag 'Submit' %>
 <% end %>
