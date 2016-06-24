@@ -1,4 +1,9 @@
-<%= link_to "Back to all movies", movies_path %>
-
-<h2>Submit a movie!</h2>
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <%= link_to "Back to all movies", movies_path, class: 'pull-right' %>
+    <%= render 'shared/content_title', title: 'Create New Movie' %>
+    <%= render 'form' %>
+  <div class="col-md-2"></div>
+  </div>
+</div>

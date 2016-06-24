@@ -1,10 +1,4 @@
-<footer>
-  <small>
-    <% if current_user %>
-      Signed in as <%= current_user.full_name %> (<%= link_to "Log out", logout_path("current"), method: :delete %>) |
-      <%= link_to 'User Management', admin_users_path if current_user.admin? %>
-    <% else %>
-      <%= link_to "Log In", login_path %> | <%= link_to "Sign Up", register_path %>
-    <% end %>
-  </small>
+<footer class="text-center">
+  <hr>
+  2016 @navyboys
 </footer>

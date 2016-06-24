@@ -1,4 +1,9 @@
-<%= link_to "Back to this movie", movie_path(@movie) %>
-
-<h2>Edit this movie.</h2>
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <%= link_to "Back to Movie", movie_path(@movie), class: 'pull-right' %>
+    <%= render 'shared/content_title', title: @movie.title %>
+    <%= render 'form' %>
+  <div class="col-md-2"></div>
+  </div>
+</div>

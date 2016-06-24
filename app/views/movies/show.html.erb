@@ -1,22 +1,51 @@
-<%= link_to "Back to all movies", movies_path %><br/>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <%= link_to 'Back to All Movies', movies_path, class: 'pull-right' %>
+    <%= render 'shared/content_title', title: @movie.title %>
+    <div class="well">
+      <div class="row">
+        <div class="col-md-3">
+          <%= link_to image_tag(@movie.image_url(:thumb)), movie_path(@movie) if @movie.image? %>
+        </div>
+        <div class="col-md-9">
+          <h4>
+            <%= @movie.title %>
+            <small>
+              Dir.
+              <%= @movie.director %> |
+              <%= @movie.runtime_in_minutes %> min |
+              <%= @movie.review_average %>/10
+            </small>
+          </h4>
+          <p><%= @movie.description %></p>
+          <h5><%= formatted_date(@movie.release_date) %></h5>
+          <p class="pull-right">
+            <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary btn-sm' %>
+            <%= link_to 'Delete', movie_path(@movie), class: 'btn btn-danger btn-sm', method: 'delete' %>
+          </p>
+        </div>
+      </div>
+    </div>
 
-<%= link_to image_tag(@movie.image_url(:thumb)), movie_path(@movie) if @movie.image? %>
-<h2><%= @movie.title %> (<%= link_to "edit", edit_movie_path(@movie) %>, <%= link_to "delete", movie_path(@movie), method: :delete, confirm: "You sure?" %>)</h2>
-<h3><%= formatted_date(@movie.release_date) %></h3>
-<h4>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h4>
-<p><%= @movie.review_average %>/10</p>
-<p><%= @movie.description %></p>
-
-<hr>
-
-<h3>Reviews of <em><%= @movie.title %></em></h3>
-<% if current_user %>
-  <% @movie.reviews.each do |review| %>
-    <p><%= review.text %></p>
-    <p><%= review.rating_out_of_ten %>/10</p>
-    <small>- <%= review.user.full_name %></small><br/>
-  <% end %>
-  <p><%= link_to "Write a review!", new_movie_review_path(@movie) %></p>
-<% else %>
-  <p>Please <%= link_to "log in", new_session_path %> to see reviews and add your own.</p>
-<% end %>
+    <% if current_user %>
+      <div class="well">
+        <h3>Reviews</h3>
+        <hr>
+          <% @movie.reviews.each do |review| %>
+            <p>
+              <%= review.text %>
+              (<%= review.rating_out_of_ten %>/10)
+              <small>- by <%= review.user.full_name %></small>
+            </p>
+            <hr>
+          <% end %>
+          <p><%= link_to "Write Review", new_movie_review_path(@movie), class: 'btn btn-success btn-xs' %></p>
+      </div>
+    <% else %>
+      <p>Please <%= link_to "Log In", login_path, class: 'btn btn-default btn-xs' %> to see reviews and add your own.</p>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+  </div>
+</div>
