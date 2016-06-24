@@ -1,78 +1,63 @@
-<header>
-  <div class="navbar navbar-default">
-    <div class="container-fluid">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <%= link_to 'Rotten Mangoes', root_path, class: 'navbar-brand' %>
+</div>
 
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <%= link_to 'Rotten Mangoes', root_path, class: 'navbar-brand' %>
-      </div>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+    <li class="active"><%= link_to 'Movies', movies_path %></li>
+    <li><%= link_to 'TVs', '#' %></li>
+    <li><%= link_to 'Showtimes', '#' %></li>
+  </ul>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><%= link_to 'Movies', movies_path %></li>
-          <li><%= link_to 'TVs', '#' %></li>
-          <li><%= link_to 'Showtimes', '#' %></li>
-        </ul>
-
-        <%= form_tag movies_path, method: 'GET', style: 'display: inline', class: "navbar-form navbar-left" do %>
-          <div class="form-group">
-            <%= text_field_tag :key_word, nil, placeholder: "Title or Director", class: "form-control" %>
-            <%= select_tag :duration, options_for_select(['Under 90 minutes', 'Between 90 and 120 minutes', 'Over 120 minutes'], selected: :duration ), class: "form-control" %>
-            <%= submit_tag 'Search', class: "btn btn-default" %>
-          </div>
+  <div class="navbar-right">
+    <% if current_user %>
+      <div class="dropdown">
+        <%= link_to('', class: 'btn btn-default navbar-btn dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+          <%= current_user.firstname %>
+          <span class='caret'></span>
         <% end %>
-
-        <div class="navbar-right">
-          <% if current_user %>
-            <div class="dropdown">
-              <%= link_to('', class: 'btn btn-default navbar-btn dropdown-toggle', 'data-toggle' => 'dropdown') do %>
-                <%= current_user.firstname %>
-                <span class='caret'></span>
+        <ul class='dropdown-menu'>
+          <li>
+            <%= link_to '#' do %>
+              <i class='icon-user'></i>
+              View Profile
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '#' do %>
+              <i class='icon-pencil'></i>
+              Edit Profile
+            <% end %>
+          </li>
+          <li role="separator" class="divider"></li>
+          <% if current_user.admin? %>
+            <li>
+              <%= link_to admin_users_path do %>
+                <i class='icon-user'></i>
+                User Management
               <% end %>
-              <ul class='dropdown-menu'>
-                <li>
-                  <%= link_to '#' do %>
-                    <i class='icon-user'></i>
-                    View Profile
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to '#' do %>
-                    <i class='icon-pencil'></i>
-                    Edit Profile
-                  <% end %>
-                </li>
-                <li role="separator" class="divider"></li>
-                <% if current_user.admin? %>
-                  <li>
-                    <%= link_to admin_users_path do %>
-                      <i class='icon-user'></i>
-                      User Management
-                    <% end %>
-                  </li>
-                <% end %>
-                <li role="separator" class="divider"></li>
-                <li>
-                  <%= link_to logout_path do %>
-                    <i class='icon-circle-arrow-left'></i>
-                    Log Out
-                  <% end %>
-                </li>
-              </ul>
-            </div>
-          <% else %>
-            <%= link_to 'Sign Up', register_path, class: "btn btn-success navbar-btn" %>
-            <%= link_to 'Log In', login_path, class: "btn btn-default navbar-btn" %>
+            </li>
           <% end %>
-        </div>
-      </div><!-- /.navbar-collapse -->
-    </div>
+          <li role="separator" class="divider"></li>
+          <li>
+            <%= link_to logout_path do %>
+              <i class='icon-circle-arrow-left'></i>
+              Log Out
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to 'Sign Up', register_path, class: "btn btn-success navbar-btn" %>
+      <%= link_to 'Log In', login_path, class: "btn btn-default navbar-btn" %>
+    <% end %>
   </div>
-</header>
+</div>

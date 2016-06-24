@@ -1,3 +1,7 @@
+<%= render 'shared/content_title', title: 'Movie List' %>
 <div class="well">
-  <%= render @movies %>
+  <%= render 'search' %>
+  <div class="row">
+    <%= render @movies %>
+  </div>
 </div>

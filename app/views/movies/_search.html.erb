@@ -1,0 +1,10 @@
+<div class="row text-center">
+  <%= form_tag movies_path, method: 'GET', style: 'display:inline', class: "navbar-form" do %>
+    <div class="form-group">
+      <%= text_field_tag :key_word, nil, placeholder: "Title or Director", class: "form-control" %>
+      <%= select_tag :duration, options_for_select(['', 'Under 90 minutes', 'Between 90 and 120 minutes', 'Over 120 minutes']), class: "form-control" %>
+      <%= submit_tag 'Search', class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+<hr>

@@ -1,5 +1,5 @@
 class Admin::UsersController < AdminsController
-  before_filter :load_user, only: [:show, :edit, :update, :destroy]
+  before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all.page(params[:page]).per(10)
@@ -26,9 +26,8 @@ class Admin::UsersController < AdminsController
   end
 
   def update
-    binding.pry
     if @user.update_attributes(user_params)
-      redirect_to admin_user_path(@user), notice: "User updated."
+      redirect_to admin_users_path, notice: "User updated."
     else
       render :edit
     end

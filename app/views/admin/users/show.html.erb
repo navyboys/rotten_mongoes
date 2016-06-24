@@ -1,7 +1,7 @@
-<h1>Rotten Mangoes</h1>
-<hr>
-<p>Full Name: <%= @user.full_name %></p>
-<p>Email: <%= @user.email %></p>
-<p>Register Time: <%= @user.created_at %></p>
-<p>Admin: <%= @user.admin? ? 'Yes' : 'No' %></p>
-<hr>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <%= render 'shared/content_title', title: 'Show User' %>
+    <%= render '/users/form', url: admin_user_path(@user), method: 'GET' %>
+  <div class="col-md-4"></div>
+</div>

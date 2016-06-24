@@ -1,7 +1,6 @@
-<%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) if movie.image? %>
-<h2><%= link_to movie.title, movie_path(movie) %></h2>
-<h3><%= formatted_date(movie.release_date) %></h3>
-<h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
-<p><%= movie.review_average %>/10</p>
-<p><%= movie.description %></p>
-<hr>
+<div class="col-md-2">
+  <%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) if movie.image? %>
+  <div class="text-center", style="width:133px">
+    <h5><%= movie.title %></h5>
+  </div>
+</div>

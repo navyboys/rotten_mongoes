@@ -1,2 +1,7 @@
-<h1>Create new user</h1>
-<%= render '/users/form', url: admin_users_path(@user), method: 'POST' %>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <%= render 'shared/content_title', title: 'Create User' %>
+    <%= render '/users/form', url: admin_users_path(@user), method: 'POST' %>
+  <div class="col-md-4"></div>
+</div>
