@@ -15,33 +15,21 @@
               Dir.
               <%= @movie.director %> |
               <%= @movie.runtime_in_minutes %> min |
-              <%= @movie.review_average %>/10
+              <%= @movie.review_average || 0 %>/10
             </small>
           </h4>
           <p><%= @movie.description %></p>
           <h5><%= formatted_date(@movie.release_date) %></h5>
           <p class="pull-right">
             <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary btn-sm' %>
-            <%= link_to 'Delete', movie_path(@movie), class: 'btn btn-danger btn-sm', method: 'delete' %>
+            <%= link_to 'Delete', movie_path(@movie), class: 'btn btn-danger btn-sm', method: 'delete', confirm: 'Are you sure?' %>
           </p>
         </div>
       </div>
     </div>
 
     <% if current_user %>
-      <div class="well">
-        <h3>Reviews</h3>
-        <hr>
-          <% @movie.reviews.each do |review| %>
-            <p>
-              <%= review.text %>
-              (<%= review.rating_out_of_ten %>/10)
-              <small>- by <%= review.user.full_name %></small>
-            </p>
-            <hr>
-          <% end %>
-          <p><%= link_to "Write Review", new_movie_review_path(@movie), class: 'btn btn-success btn-xs' %></p>
-      </div>
+      <%= render 'reviews/list', reviews: @movie.reviews %>
     <% else %>
       <p>Please <%= link_to "Log In", login_path, class: 'btn btn-default btn-xs' %> to see reviews and add your own.</p>
     <% end %>

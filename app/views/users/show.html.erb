@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <%= render 'shared/content_title', title: 'User Profile' %>
+    <div class="well">
+      <dl class="dl-horizontal">
+        <dt>Name</dt>
+        <dd><%= @user.full_name %></dd>
+        <dt>Email</dt>
+        <dd><%= @user.email %></dd>
+      </dl>
+    </div>
+    <hr>
+    <%= render 'reviews/list', reviews: @user.reviews %>
+  <div class="col-md-3"></div>
+</div>
