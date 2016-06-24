@@ -21,6 +21,9 @@
     <% if current_user %>
       <div class="dropdown">
         <%= link_to('', class: 'btn btn-default navbar-btn dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+          <% if is_impersonating? %>
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          <% end %>
           <%= current_user.firstname %>
           <span class='caret'></span>
         <% end %>
@@ -39,8 +42,8 @@
                 User Management
               <% end %>
             </li>
+            <li role="separator" class="divider"></li>
           <% end %>
-          <li role="separator" class="divider"></li>
           <li>
             <%= link_to logout_path do %>
               <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>

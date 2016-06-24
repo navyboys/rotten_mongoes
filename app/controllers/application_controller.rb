@@ -16,5 +16,15 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def is_impersonating?
+    session[:original_user_id] != nil
+  end
+
+  def current_impersonator
+    User.find(session[:original_user_id])
+  end
+
   helper_method :current_user
+  helper_method :current_impersonator
+  helper_method :is_impersonating?
 end

@@ -3,7 +3,7 @@ class Movie < ActiveRecord::Base
     where("UPPER(title) LIKE ? OR UPPER(director) LIKE ?", "%#{word}%".upcase, "%#{word}%".upcase)
   end
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 

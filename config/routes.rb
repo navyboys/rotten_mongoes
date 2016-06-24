@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    get 'sessions/impersonate/:id', to: 'sessions#impersonate'
   end
 
   resources :movies do
